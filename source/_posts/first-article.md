@@ -1,7 +1,8 @@
 ---
 title: my first article
 date: 2023-01-05
-type: "tags"
+tags: test tag
+categories: tutorials
 ---
 
 hello this is my first article!
