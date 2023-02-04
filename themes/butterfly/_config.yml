@@ -19,7 +19,7 @@ menu:
     清单||fas fa-list:
       音乐: /music/ || fas fa-music
       电影: /movies/ || fas fa-video
-    友链: /link/ || fas fa-link
+    # 友链: /link/ || fas fa-link
     关于: /about/ || fas fa-heart
 
 nav:
@@ -681,7 +681,7 @@ aside:
       enable: true
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/xxxxxx
+      link: https://github.com/Alpha2J
   card_announcement:
     enable: true
     content: This is my Blog
