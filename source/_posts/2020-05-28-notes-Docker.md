@@ -2,7 +2,7 @@
 title: Docker
 date: 2020-05-28
 tags: Docker
-categories: Docker
+categories: notes
 keywords: Docker 
 ---
 
