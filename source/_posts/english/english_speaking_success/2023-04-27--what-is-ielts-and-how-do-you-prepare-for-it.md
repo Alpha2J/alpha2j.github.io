@@ -21,6 +21,7 @@ This article is the summary based on the video "[What is IELTS and How Do You Pr
 1. who is it for
 2. how do i pass
 3. what does it look like
-4. 
+4. how do i book the test
+5. how do i prepare for ielts
 
 
