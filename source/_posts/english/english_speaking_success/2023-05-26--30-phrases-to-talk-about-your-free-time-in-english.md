@@ -21,5 +21,15 @@ There are probably four common types of activities:
   - creative activities: Things like playing a musical instrument, such as playing guita, painting, maybe knitting or some similar handcraft work. and also, taking photographs.
 
 ## How to talk about our hobby
+1. What you do in your Free Time?
+   - I get up to a lot of things: meaning i do a lot of things.
+   - I don't get up too much.
+
+
+# Tenses
+1. What is the difference between I like to do something and I Like doing something？
+   We can use both to express our enjoyment of something, like: I enjoy yoga, I like to do yoga, I like doing yoga.
+
+
 
 
