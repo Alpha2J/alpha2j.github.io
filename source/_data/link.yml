@@ -1,0 +1,23 @@
+- class_name: 友情链接
+  class_desc: GitHub
+  link_list:
+    - name: Alpha2J
+      link: https://github.com/Alpha2J
+      avatar: https://avatars.githubusercontent.com/u/17811469?v=4
+      descr: Don't focus on things you can't change, focus on what you can!✌️✌️
+
+- class_name: 网站
+  class_desc: 值得推荐的网站
+  link_list:
+    - name: Youtube
+      link: https://www.youtube.com/
+      avatar: https://i.loli.net/2020/05/14/9ZkGg8v3azHJfM1.png
+      descr: 视频网站
+    - name: Weibo
+      link: https://www.weibo.com/
+      avatar: https://i.loli.net/2020/05/14/TLJBum386vcnI1P.png
+      descr: 中国最大社交分享平台
+    - name: Twitter
+      link: https://twitter.com/
+      avatar: https://i.loli.net/2020/05/14/5VyHPQqR6LWF39a.png
+      descr: 社交分享平台
