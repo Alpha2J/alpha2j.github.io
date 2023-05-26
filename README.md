@@ -16,6 +16,7 @@ This repository serves as a platform to showcase my blog, experiences and articl
    all updates will be lost: https://butterfly.js.org/posts/4073eda/. if you want to make the custom config,
    what you need to do is to edit `/_config.butterfly.yml`, put your resources into `/source/assets` and then 
    reference to it with `/assets/xxxx`
+2. steps to open music media: https://butterfly.js.org/posts/507c070f/#%E6%8F%92%E5%85%A5-Aplayer-html
 
 ## related docs
 1. tutorial on building GitHub Pages using Hexo and Butterfly: https://juejin.cn/post/7095323643277738014
