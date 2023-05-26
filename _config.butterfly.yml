@@ -17,10 +17,11 @@ menu:
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
   关于: /about/ || fas fa-heart
-  其他||fas fa-list:
-    音乐: /music/ || fas fa-music
-#    电影: /movies/ || fas fa-video
-    友链: /link/ || fas fa-link
+  友链: /link/ || fas fa-link
+#  其他||fas fa-list:
+#    音乐: /music/ || fas fa-music
+##    电影: /movies/ || fas fa-video
+#    友链: /link/ || fas fa-link
 
 nav:
   # logo: img/blog_avatar.jpeg
