@@ -1,9 +1,9 @@
 ---
 title: JavaScript基础
 date: 2020-07-18
-tags: JavaScript
-categories: notes
-keywords: 'Basic JavaScript'
+tags: notes javascript
+categories: technology
+keywords: 'basic javascript'
 ---
 
 # 一、语言基础

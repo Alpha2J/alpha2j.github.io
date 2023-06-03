@@ -1,9 +1,9 @@
 ---
 title: Docker
 date: 2020-05-28
-tags: Docker
-categories: notes
-keywords: Docker 
+tags: notes docker
+categories: technology
+keywords: docker
 ---
 
 # 一、入门
