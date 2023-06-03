@@ -1,7 +1,9 @@
 ---
 title: Love Story
 date: 2023-04-09
-tags: song_lyrics
+tags:
+  - IELTS
+  - song_lyrics
 categories: english
 keywords: 'Lyrics, Taylor Swift, Love Story'
 ---

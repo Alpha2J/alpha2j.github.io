@@ -1,7 +1,9 @@
 ---
 title: JavaScript基础
 date: 2020-07-18
-tags: notes javascript
+tags: 
+  - notes
+  - javascript
 categories: technology
 keywords: 'basic javascript'
 ---

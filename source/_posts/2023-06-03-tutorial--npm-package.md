@@ -1,7 +1,9 @@
 ---
 title: npm包的发布步骤
 date: 2023-06-03
-tags: tutorial nom
+tags: 
+  - tutorial
+  - npm
 categories: technology
 keywords: 'npm package'
 ---
