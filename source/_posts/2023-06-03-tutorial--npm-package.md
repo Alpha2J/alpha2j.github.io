@@ -6,7 +6,7 @@ categories: technology
 keywords: 'npm package'
 ---
 
-1. 创建npm账号：创建npm账号 - 访问**[npm官方网站](https://www.npmjs.com/)**，点击"Sign Up"按钮创建一个新的账号。
+1. 创建npm账号：创建npm账号 - 访问[npm官方网站](https://www.npmjs.com/)，点击"Sign Up"按钮创建一个新的账号。
 
 2. 使用`npm init`初始化npm项目，如果项目使用域级包，则需要加上--scope：`npm init -y --scope=@scope-name`
 
@@ -22,9 +22,9 @@ keywords: 'npm package'
    }
    ```
 
-4. 使用`npm login`登录，如果无法登录，报”Public registration is not allowed”之类的错误，请将registry改回官方镜像源：`npm config set registry [<https://registry.npmjs.org>](<https://registry.npmjs.org/>)`
+4. 使用`npm login`登录，如果无法登录，报"Public registration is not allowed"之类的错误，请将registry改回官方镜像源：`npm config set registry [<https://registry.npmjs.org>](<https://registry.npmjs.org/>)`
 
-5. 使用`npm publish`发布包。如果是域级包的，则需要用`npm publish --access public`，当然，如果不加public，就是private的仓库，需要给钱。
+5. 使用`npm publish`发布包：如果是域级包，则需要用`npm publish --access public`。当然，如果不加public，就是private的仓库，需要给钱。
 
 版本升级：修改代码后，发布新版本的包需要使用新的版本号，具体步骤如下：
 
