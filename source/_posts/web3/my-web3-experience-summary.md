@@ -16,3 +16,15 @@ keywords: 'web3, block chain, solidity'
    - bscscan，twitterscan，nftscan
 4. 相关资料：
    - https://www.liaoxuefeng.com/wiki/1207298049439968/1207298440612096
+5. l1 l2 都有哪些，区别是什么？starknet，zksync又有什么区别
+6. 学习路径：
+   - 。。。
+
+
+
+ERC20: 
+
+
+0x452798850d8b87d6478be2795222476bca14f8faff4b26eedcd33516463d404
+
+starknet deploy --class_hash 0x452798850d8b87d6478be2795222476bca14f8faff4b26eedcd33516463d404 --account=jebs_account1 --inputs 11111 3333
