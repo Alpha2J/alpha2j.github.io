@@ -3,6 +3,7 @@ title: 为什么shell脚本的文件名以sh结尾
 date: 2020-07-25
 tags: 
   - experience
+  - linux
   - shell script
 categories: technology
 keywords: 'shell script'
