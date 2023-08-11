@@ -19,3 +19,7 @@ This repository serves as a platform to showcase my blog, experiences and articl
 ## Related Docs
 1. Tutorial on building GitHub Pages using Hexo and Butterfly: https://juejin.cn/post/7095323643277738014
 2. Butterfly official GitHub repository: https://github.com/jerryc127/hexo-theme-butterfly 
+
+
+## Notes
+1. How to pin a post: https://github.com/hexojs/hexo-generator-index#usage
