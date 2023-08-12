@@ -21,10 +21,3 @@ keywords: 'web3, block chain, solidity'
    - 。。。
 
 
-
-ERC20: 
-
-
-0x452798850d8b87d6478be2795222476bca14f8faff4b26eedcd33516463d404
-
-starknet deploy --class_hash 0x452798850d8b87d6478be2795222476bca14f8faff4b26eedcd33516463d404 --account=jebs_account1 --inputs 11111 3333
