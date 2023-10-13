@@ -1,5 +1,5 @@
 ---
-title: Tuesday with Morrie Chapter1 The Syllabus
+title: Tuesday with Morrie Chapter2 The Syllabus
 date: 2023-08-07
 tags:
   - IELTS
