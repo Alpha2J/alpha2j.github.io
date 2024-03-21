@@ -8,6 +8,29 @@ categories: english
 keywords: 'IELTS, Tutorial, Preparing for IELTS'
 ---
 
+This article is a note base on the video of  "[What is IELTS and How Do You Prepare for it](https://www.youtube.com/watch?v=6-VlNg3n7cg&t=69s)".
+
+
+
+1. What is IELTS:
+2. 
+
+
+
+# Questions refered in the video
+
+1. When do I need to test my English level, and how?
+
+
+
+# Links refered in the video
+
+
+
+
+
+
+
 This article is the summary based on the video "[What is IELTS and How Do You Prepare for it](https://www.youtube.com/watch?v=6-VlNg3n7cg&t=69s)". The video
 
 
@@ -42,27 +65,4 @@ questions:
 3. The Academic IELTS and the General ITLTS, which one is right for me?
    - If you are going to abroad, or in an English speaking enviroment at undergraduate or postgraduate level. Or, If you are going to work in some fields as a professional, such as medicine, nursing, accountancy. Then you may need Academic IELTS.
    - If you are going to an English speaking country to study below degree level, for example in secondary education or going for work experience and also who need IELTS as part of visa requirement for migration to an English speaking country. And the most important thing is, we should always check the organization we are applying to, which modules we should take.
-
-
-
-
-
-main concept
-
-1. who is it for
-  - ielts stands for the international english lanuage testing system
-    and it's a test of english proficiency
-
-
-2. how do i pass
-3. what does it look like
-4. how do i book the test
-5. how do i prepare for ielts
-
-
-notes:
-
-
-
-
-proficiency
+   - they test our reading, writing, 
