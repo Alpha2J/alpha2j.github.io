@@ -1,0 +1,336 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>一文读懂JavaScript测试框架Jest | 杰布是谁</title><meta name="author" content="Jeb"><meta name="copyright" content="Jeb"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、基础知识 可参考下面代码一同学习：  reader.test.js writer.test.js   1.1 是什么Jest是一个流行的JavaScript测试框架，由Facebook开发，可以让我们在开发过程中更方便地进行单元测试。它提供了很多有用的功能，例如：  快速和可靠的测试运行器：可以快速地运行测试用例，并在测试用例间进行快速切换 断言库：在测试用例中进行断言 模拟函数：模拟函数的行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一文读懂JavaScript测试框架Jest">
+<meta property="og:url" content="https://alpha2j.cn/2022/12/23/undefined/index.html">
+<meta property="og:site_name" content="杰布是谁">
+<meta property="og:description" content="一、基础知识 可参考下面代码一同学习：  reader.test.js writer.test.js   1.1 是什么Jest是一个流行的JavaScript测试框架，由Facebook开发，可以让我们在开发过程中更方便地进行单元测试。它提供了很多有用的功能，例如：  快速和可靠的测试运行器：可以快速地运行测试用例，并在测试用例间进行快速切换 断言库：在测试用例中进行断言 模拟函数：模拟函数的行">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://alpha2j.cn/assets/blog_avatar.jpeg">
+<meta property="article:published_time" content="2022-12-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-24T14:41:07.235Z">
+<meta property="article:author" content="Jeb">
+<meta property="article:tag" content="tutorial">
+<meta property="article:tag" content="jest javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://alpha2j.cn/assets/blog_avatar.jpeg"><link rel="shortcut icon" href="/assets/favicon.png"><link rel="canonical" href="https://alpha2j.cn/2022/12/23/undefined/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Jeb","link":"链接: ","source":"来源: 杰布是谁","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '一文读懂JavaScript测试框架Jest',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-24 22:41:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/assets/blog_avatar.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house-user"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-stream"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-hashtag"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-layer-group"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-graduate"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/about_en/"><i class="fa-fw fas fa-user-astronaut"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/assets/default_top_img.png')"><nav id="nav"><span id="blog-info"><a href="/" title="杰布是谁"><span class="site-name">杰布是谁</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house-user"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-stream"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-hashtag"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-layer-group"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-graduate"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/about_en/"><i class="fa-fw fas fa-user-astronaut"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">一文读懂JavaScript测试框架Jest</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2022-12-23T16:00:00.000Z" title="发表于 2022-12-24 00:00:00">2022-12-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/technology/">technology</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="一文读懂JavaScript测试框架Jest"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="一、基础知识"><a href="#一、基础知识" class="headerlink" title="一、基础知识"></a>一、基础知识</h1><blockquote>
+<p>可参考下面代码一同学习：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/hellooo-stack/hellooo-commons-nodejs/blob/master/__tests__/excel/reader.test.js">reader.test.js</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/hellooo-stack/hellooo-commons-nodejs/blob/master/__tests__/excel/writer.test.js">writer.test.js</a></li>
+</ol>
+</blockquote>
+<h2 id="1-1-是什么"><a href="#1-1-是什么" class="headerlink" title="1.1 是什么"></a>1.1 是什么</h2><p>Jest是一个流行的JavaScript测试框架，由Facebook开发，可以让我们在开发过程中更方便地进行单元测试。它提供了很多有用的功能，例如：</p>
+<ul>
+<li>快速和可靠的测试运行器：可以快速地运行测试用例，并在测试用例间进行快速切换</li>
+<li>断言库：在测试用例中进行断言</li>
+<li>模拟函数：模拟函数的行为</li>
+<li>异步测试支持：方便地测试异步代码。</li>
+<li>自动模块打包：在测试用例中轻松加载依赖模块</li>
+<li>自动运行测试：在文件发生变化时自动运行测试用例</li>
+<li>可视化报告：生成详细的可视化报告，以更好地理解测试结果</li>
+</ul>
+<p>Jest可以运行在NodeJS环境中，也可以运行在浏览器中，因此可以用于测试各种类型的JavaScript代码。它的语法简单易懂，易于学习，因此是一个非常流行的JavaScript测试框架。</p>
+<h2 id="1-2-使用步骤"><a href="#1-2-使用步骤" class="headerlink" title="1.2 使用步骤"></a>1.2 使用步骤</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 安装</span></span><br><span class="line">npm i --save-dev jest</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 创建一个包含需要被测试的代码的文件sum.js:</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sum</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = sum;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 编写测试用例</span></span><br><span class="line"><span class="comment">// 创建一个sum.test.js的文件:</span></span><br><span class="line"><span class="keyword">const</span> sum = <span class="built_in">require</span>(<span class="string">&#x27;./sum&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;adds 1 + 2 to equal 3&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">expect</span>(<span class="title function_">sum</span>(<span class="number">1</span>, <span class="number">2</span>)).<span class="title function_">toBe</span>(<span class="number">3</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 在package.json里面添加如下配置:</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;test&quot;</span>: <span class="string">&quot;jest&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 运行npm test, 将打印如下信息:</span></span><br><span class="line"><span class="variable constant_">PASS</span>  ./sum.<span class="property">test</span>.<span class="property">js</span></span><br><span class="line">✓ adds <span class="number">1</span> + <span class="number">2</span> to equal <span class="number">3</span> (5ms)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-编写测试用例"><a href="#1-3-编写测试用例" class="headerlink" title="1.3 编写测试用例"></a>1.3 编写测试用例</h2><p>在编写Jest测试用例时，通常会使用以下几种函数：</p>
+<ul>
+<li><p><code>describe()</code>：用于组织测试用例，将相关的测试用例分组。可以将多个<code>test()</code>函数包装在<code>describe()</code>函数中，并为其提供一个描述性字符串。就是说，这个函数是用来对测试用例进行分组的，它分组之后还可以在该函数内再次调用这个函数进行子分组，如此嵌套。</p>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 分组</span></span><br><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;group1&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 子分组嵌套</span></span><br><span class="line">    <span class="title function_">describe</span>(<span class="string">&#x27;sub1 of group1&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 测试</span></span><br><span class="line">        <span class="title function_">test</span>(<span class="string">&#x27;test1&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 返回匹配对象</span></span><br><span class="line">            <span class="keyword">let</span> expectationObj = <span class="title function_">expect</span>(<span class="number">1</span> + <span class="number">1</span>);</span><br><span class="line">            <span class="comment">// 执行断言操作测试代码</span></span><br><span class="line">            expectationObj.<span class="title function_">toBe</span>(<span class="number">2</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 嵌套的第二个子分组</span></span><br><span class="line">    <span class="title function_">describe</span>(<span class="string">&#x27;sub2 of group1&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="title function_">test</span>(<span class="string">&#x27;test2&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;success of test2&#x27;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>test()</code>函数：用于执行单个测试用例。</p>
+</li>
+<li><p><code>it()</code>函数：等价于<code>test()</code>函数，用于执行单个测试用例。</p>
+</li>
+<li><p><code>expect()</code>函数：用来返回一个”匹配对象“，然后可以用“匹配器”来对这个“匹配对象”执行一些断言操作，用于测试代码的期望输出。</p>
+</li>
+<li><p><code>toBe()</code>、<code>toEqual()</code>、<code>toMatch()</code>等断言函数：也被称为匹配器。Jest支持的匹配器可通过<a target="_blank" rel="noopener" href="https://jestjs.io/zh-Hans/docs/expect">该文档</a>查询。</p>
+</li>
+<li><p>辅助函数：当<code>beforeXXX()</code>函数和<code>afterXXX()</code>函数在<code>describe()</code>函数内的时，这些设置只会作用于当前的<code>describe()</code>分组。</p>
+<ul>
+<li><p><code>beforeEach()</code>、<code>beforeEach()</code>：用于在每个测试用例之前&#x2F;之后执行特定的代码。</p>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">beforeEach</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">initializeCityDatabase</span>();</span><br><span class="line">  <span class="comment">// 如果这个方法是异步方法, 并且返回promise, 那么可以像测试异步代码那样, 直接返回这个promise</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">initializeCityDatabase</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">afterEach</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">clearCityDatabase</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;city database has Vienna&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">expect</span>(<span class="title function_">isCity</span>(<span class="string">&#x27;Vienna&#x27;</span>)).<span class="title function_">toBeTruthy</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;city database has San Juan&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">expect</span>(<span class="title function_">isCity</span>(<span class="string">&#x27;San Juan&#x27;</span>)).<span class="title function_">toBeTruthy</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>beforeAll()</code>、<code>afterAll()</code>：用于在所有测试用例之前&#x2F;之后执行特定的代码。</p>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">beforeAll</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">initializeCityDatabase</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">afterAll</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">clearCityDatabase</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;city database has Vienna&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">expect</span>(<span class="title function_">isCity</span>(<span class="string">&#x27;Vienna&#x27;</span>)).<span class="title function_">toBeTruthy</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;city database has San Juan&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">expect</span>(<span class="title function_">isCity</span>(<span class="string">&#x27;San Juan&#x27;</span>)).<span class="title function_">toBeTruthy</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>done()</code>回调函数：用于在异步测试用例执行完毕时通知Jest。</p>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;fetches data successfully&#x27;</span>, <span class="function">(<span class="params">done</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">fetchData</span>().<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">expect</span>(data).<span class="title function_">toBeDefined</span>();</span><br><span class="line">    <span class="title function_">done</span>();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="1-4-测试异步代码"><a href="#1-4-测试异步代码" class="headerlink" title="1.4 测试异步代码"></a>1.4 测试异步代码</h2><p>当有异步方式运行的代码时，Jest需要知道当前它测试的代码是否已经完成，然后它可以转移到另一个测试。Jest通过<code>callback</code>，<code>Promises</code>或<code>Async/Await</code>来处理这种情况。</p>
+<ul>
+<li><p><code>callback</code>：</p>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假如fetchData(callback) 是一个异步函数, 会在获取到数据之后调用callback</span></span><br><span class="line"><span class="comment">// 假如需要测试获取到的数据是不是&#x27;peanut butter&#x27;, 不要这样做:</span></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;the data is peanut butter&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">callback</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="title function_">expect</span>(data).<span class="title function_">toBe</span>(<span class="string">&#x27;peanut butter&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 一旦fetchData执行结束, 此测试就在没有调用回调函数前结束</span></span><br><span class="line">  <span class="title function_">fetchData</span>(callback);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确做法:</span></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;the data is peanut butter&#x27;</span>, <span class="function"><span class="params">done</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">callback</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="title function_">expect</span>(data).<span class="title function_">toBe</span>(<span class="string">&#x27;peanut butter&#x27;</span>);</span><br><span class="line">      <span class="comment">// Jest会等done回调函数执行结束后, 结束测试</span></span><br><span class="line">      <span class="title function_">done</span>();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="title function_">done</span>(error);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">fetchData</span>(callback);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Promises</code>：</p>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果fetchData不使用回调函数, 而是返回一个Promise, 其解析字符串为‘peanut butter&#x27;, 那么可以这样测试:</span></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;the data is peanut butter&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 这里一定要有return, 否则在这个promise被resole, then()有机会执行之前, 测试就已经被视为已经完成了</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">fetchData</span>().<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">expect</span>(data).<span class="title function_">toBe</span>(<span class="string">&#x27;peanut butter&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Async/Await</code>：</p>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 改用Async/Await的方式:</span></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;the data is peanut butter&#x27;</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> data = <span class="keyword">await</span> <span class="title function_">fetchData</span>();</span><br><span class="line">  <span class="title function_">expect</span>(data).<span class="title function_">toBe</span>(<span class="string">&#x27;peanut butter&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;the fetch fails with an error&#x27;</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  expect.<span class="title function_">assertions</span>(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">fetchData</span>();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="title function_">expect</span>(e).<span class="title function_">toMatch</span>(<span class="string">&#x27;error&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="1-5-Jest配置文件"><a href="#1-5-Jest配置文件" class="headerlink" title="1.5 Jest配置文件"></a>1.5 Jest配置文件</h2><p>Jest的配置文件是用于配置Jest运行参数的文件。默认情况下，Jest会在项目根目录中寻找名为<code>jest.config.js</code>的文件作为配置文件。在配置文件中，可以包含各种选项，例如：</p>
+<ul>
+<li><code>rootDir</code>：指定项目的根目录。</li>
+<li><code>testMatch</code>：指定要包含在测试运行中的测试文件的匹配模式。</li>
+<li><code>moduleNameMapper</code>：指定将模块名称映射到模块文件路径的对象。</li>
+<li><code>transform</code>：指定要应用于测试文件的转换函数。</li>
+<li><code>setupFilesAfterEnv</code>：指定要在测试环境初始化后运行的脚本文件。</li>
+</ul>
+<p>下面是一个简单的Jest配置文件的示例：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">module.exports = <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment">// 规定哪些文件应该被测试</span></span><br><span class="line">  testMatch<span class="punctuation">:</span> <span class="punctuation">[</span>&#x27;**<span class="comment">/*.test.js&#x27;],</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  // 规定哪些文件应该被忽略</span></span><br><span class="line"><span class="comment">  testPathIgnorePatterns: [&#x27;/node_modules/&#x27;],</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  // 规定如何映射模块的路径</span></span><br><span class="line"><span class="comment">  moduleNameMapper: &#123;</span></span><br><span class="line"><span class="comment">    &#x27;^@/(.*)$&#x27;: &#x27;&lt;rootDir&gt;/src/$1&#x27;,</span></span><br><span class="line"><span class="comment">  &#125;,</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  // 规定在测试运行之前要执行的脚本</span></span><br><span class="line"><span class="comment">  setupFiles: [&#x27;&lt;rootDir&gt;/jest.setup.js&#x27;],</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  // 规定在测试运行之前，且在测试环境被创建之后要执行的脚本</span></span><br><span class="line"><span class="comment">  setupFilesAfterEnv: [&#x27;&lt;rootDir&gt;/jest.setupAfterEnv.js&#x27;],</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  // 规定如何转换源文件</span></span><br><span class="line"><span class="comment">  transform: &#123;</span></span><br><span class="line"><span class="comment">    &#x27;^.+\\.jsx?$&#x27;: &#x27;babel-jest&#x27;,</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Jest配置文件生成：</p>
+<ol>
+<li>确保已在项目中安装了Jest。如果还没有安装，可以在终端中运行<code>npm install --save-dev jest</code>来安装</li>
+<li>在终端中运行命令<code>jest --init</code>，将启动一个向导，提示选择配置选项。可以根据提示选择适合项目的选项。完后会在项目根目录下生成配置文件<code>jest.config.js</code></li>
+</ol>
+<h1 id="二、最佳实践"><a href="#二、最佳实践" class="headerlink" title="二、最佳实践"></a>二、最佳实践</h1><h2 id="2-1-目录结构"><a href="#2-1-目录结构" class="headerlink" title="2.1 目录结构"></a>2.1 目录结构</h2><p>Jest测试用例通常位于项目中的<code>__tests__</code>文件夹中。每个测试用例都是一个独立的JavaScript文件，文件名通常以<code>.test.js</code>结尾。例如，如果要测试的是一个名为<code>add.js</code>的模块，则可以在<code>__tests__</code>文件夹中创建一个名为<code>add.test.js</code>的测试用例文件。测试用例文件中的代码应该类似于以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const add = require(<span class="string">&#x27;../add&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">test</span>(<span class="string">&#x27;adds 1 + 2 to equal 3&#x27;</span>, () =&gt; &#123;</span><br><span class="line">  expect(add(1, 2)).toBe(3);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-配置实践"><a href="#2-2-配置实践" class="headerlink" title="2.2 配置实践"></a>2.2 配置实践</h2><ol>
+<li><p>被测试文件<code>sum.js</code>路径为：<code>src/sum.js</code>，测试文件<code>sum.test.js</code>路径为：<code>__test__/sum.test.js</code>，<code>sum.test.js</code>内导入<code>sum.js</code>的方式为：<code>const &#123; add &#125; = require(&#39;../src/add&#39;);</code>，前缀<code>../</code>在每个测试文件下都要写一遍，非常冗余，解决方式：</p>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// jest.config.js</span></span><br><span class="line">module.exports = <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment">// ...其他配置</span></span><br><span class="line">  moduleNameMapper<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    &#x27;^src/(.*)$&#x27;<span class="punctuation">:</span> &#x27;&lt;rootDir&gt;/src/$<span class="number">1</span>&#x27;<span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span>;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="2-3-问题处理"><a href="#2-3-问题处理" class="headerlink" title="2.3 问题处理"></a>2.3 问题处理</h2><ol>
+<li>WebStorm无法识别Jest函数，报错：”Unresolved function or method test()”<ul>
+<li>原因：WebStorm没有正确识别Jest的类型定义。</li>
+<li>解决方案：安装@types&#x2F;jest包，<code>npm install @types/jest --save-dev</code></li>
+</ul>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://alpha2j.cn">Jeb</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://alpha2j.cn/2022/12/23/undefined/">https://alpha2j.cn/2022/12/23/undefined/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://alpha2j.cn" target="_blank">杰布是谁</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/tutorial/">tutorial</a><a class="post-meta__tags" href="/tags/jest-javascript/">jest javascript</a></div><div class="post_share"><div class="social-share" data-image="/assets/blog_avatar.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/04/08/love-story/" title="Love Story"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Love Story</div></div></a></div><div class="next-post pull-right"><a href="/2022/08/13/undefined/" title="一致性哈希算法详解（原理与Java实现）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">一致性哈希算法详解（原理与Java实现）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/08/07/undefined/" title="如何将artifact发布到Maven中央仓库"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-08</div><div class="title">如何将artifact发布到Maven中央仓库</div></div></a></div><div><a href="/2022/08/13/undefined/" title="一致性哈希算法详解（原理与Java实现）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-14</div><div class="title">一致性哈希算法详解（原理与Java实现）</div></div></a></div><div><a href="/2023/06/02/undefined/" title="npm包的发布步骤"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-03</div><div class="title">npm包的发布步骤</div></div></a></div><div><a href="/2023/07/07/undefined/" title="maven核心概念的一次探索"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-08</div><div class="title">maven核心概念的一次探索</div></div></a></div><div><a href="/2023/07/25/undefined/" title="如何创建自己的maven archetype"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-26</div><div class="title">如何创建自己的maven archetype</div></div></a></div><div><a href="/2023/12/17/undefined/" title="使用bitcoinjs-lib进行比特币的转账"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-18</div><div class="title">使用bitcoinjs-lib进行比特币的转账</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/assets/blog_avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jeb</div><div class="author-info__description">即使天还没亮，固执做梦的人，身前会有光！</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Alpha2J"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Alpha2J" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jeb.wannng@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">一、基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 使用步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 编写测试用例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E6%B5%8B%E8%AF%95%E5%BC%82%E6%AD%A5%E4%BB%A3%E7%A0%81"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 测试异步代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-Jest%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 Jest配置文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">2.</span> <span class="toc-text">二、最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E9%85%8D%E7%BD%AE%E5%AE%9E%E8%B7%B5"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 配置实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 问题处理</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/17/undefined/" title="使用bitcoinjs-lib进行比特币的转账">使用bitcoinjs-lib进行比特币的转账</a><time datetime="2023-12-17T16:00:00.000Z" title="发表于 2023-12-18 00:00:00">2023-12-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/06/the-syllabus/" title="Tuesday with Morrie Chapter2 The Syllabus">Tuesday with Morrie Chapter2 The Syllabus</a><time datetime="2023-08-06T16:00:00.000Z" title="发表于 2023-08-07 00:00:00">2023-08-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/04/the-curriculum/" title="Tuesday with Morrie Chapter1 The Curriculum">Tuesday with Morrie Chapter1 The Curriculum</a><time datetime="2023-08-04T16:00:00.000Z" title="发表于 2023-08-05 00:00:00">2023-08-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/25/undefined/" title="如何创建自己的maven archetype">如何创建自己的maven archetype</a><time datetime="2023-07-25T16:00:00.000Z" title="发表于 2023-07-26 00:00:00">2023-07-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/07/undefined/" title="maven核心概念的一次探索">maven核心概念的一次探索</a><time datetime="2023-07-07T16:00:00.000Z" title="发表于 2023-07-08 00:00:00">2023-07-08</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Jeb</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="60198" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true"> </div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

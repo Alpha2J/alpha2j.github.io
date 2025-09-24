@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Starknet合约开发入门 | 杰布是谁</title><meta name="author" content="Jeb"><meta name="copyright" content="Jeb"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Starknet合约开发入门一、基础概念1.1 什么是starknethttps:&#x2F;&#x2F;www.starknet.io&#x2F;en 1.2 什么是L2什么是l2 1.3 什么是zkEVMwhat is zkEVM 1.4 什么是账户抽象https:&#x2F;&#x2F;ethereum.stackexchange.com&#x2F;questions&#x2F;146974&#x2F;how-to-start-with-erc-4337 https:&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Starknet合约开发入门">
+<meta property="og:url" content="https://alpha2j.cn/2023/06/18/undefined/index.html">
+<meta property="og:site_name" content="杰布是谁">
+<meta property="og:description" content="Starknet合约开发入门一、基础概念1.1 什么是starknethttps:&#x2F;&#x2F;www.starknet.io&#x2F;en 1.2 什么是L2什么是l2 1.3 什么是zkEVMwhat is zkEVM 1.4 什么是账户抽象https:&#x2F;&#x2F;ethereum.stackexchange.com&#x2F;questions&#x2F;146974&#x2F;how-to-start-with-erc-4337 https:&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://alpha2j.cn/assets/blog_avatar.jpeg">
+<meta property="article:published_time" content="2023-06-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-24T14:41:07.235Z">
+<meta property="article:author" content="Jeb">
+<meta property="article:tag" content="starknet">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://alpha2j.cn/assets/blog_avatar.jpeg"><link rel="shortcut icon" href="/assets/favicon.png"><link rel="canonical" href="https://alpha2j.cn/2023/06/18/undefined/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Jeb","link":"链接: ","source":"来源: 杰布是谁","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Starknet合约开发入门',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-24 22:41:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/assets/blog_avatar.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house-user"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-stream"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-hashtag"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-layer-group"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-graduate"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/about_en/"><i class="fa-fw fas fa-user-astronaut"></i><span> About Me</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/assets/default_top_img.png')"><nav id="nav"><span id="blog-info"><a href="/" title="杰布是谁"><span class="site-name">杰布是谁</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-house-user"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-stream"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-hashtag"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-layer-group"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-graduate"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/about_en/"><i class="fa-fw fas fa-user-astronaut"></i><span> About Me</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Starknet合约开发入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2023-06-18T16:00:00.000Z" title="发表于 2023-06-19 00:00:00">2023-06-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web3/">web3</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Starknet合约开发入门"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Starknet合约开发入门"><a href="#Starknet合约开发入门" class="headerlink" title="Starknet合约开发入门"></a>Starknet合约开发入门</h1><h1 id="一、基础概念"><a href="#一、基础概念" class="headerlink" title="一、基础概念"></a>一、基础概念</h1><h2 id="1-1-什么是starknet"><a href="#1-1-什么是starknet" class="headerlink" title="1.1 什么是starknet"></a>1.1 什么是starknet</h2><p><a target="_blank" rel="noopener" href="https://www.starknet.io/en">https://www.starknet.io/en</a></p>
+<h2 id="1-2-什么是L2"><a href="#1-2-什么是L2" class="headerlink" title="1.2 什么是L2"></a>1.2 什么是L2</h2><p><a target="_blank" rel="noopener" href="https://www.google.com/search?q=%E4%BB%80%E4%B9%88%E6%98%AFl2&newwindow=1&sxsrf=APwXEde_ruRaGTzy1NC4YhK9TWa8sdxqsg:1687165723284&ei=GxuQZKrvEOny4-EPwM2dmAk&ved=0ahUKEwjq6POM_s7_AhVp-TgGHcBmB5MQ4dUDCA8&uact=5&oq=%E4%BB%80%E4%B9%88%E6%98%AFl2&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQAzIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQsAMQJzoKCAAQRxDWBBCwAzoICC4QigUQkQI6CwgAEIAEELEDEIMBOhEILhCABBCxAxCDARDHARDRAzoLCAAQigUQsQMQgwE6FgguEIoFEJECEJcFENwEEN4EEOAEGAE6BwgAEIoFEEM6FgguEIoFEMcBEK8BEJgFEJ4FEJkFEEM6DQgAEIoFELEDEIMBEEM6DggAEIoFELEDEIMBEJECOgQIABADOggIABCABBDJAzokCC4QigUQxwEQrwEQmAUQngUQmQUQQxCXBRDcBBDeBBDgBBgBOgsILhCKBRCxAxCRAjoRCC4QgwEQxwEQsQMQ0QMQgAQ6CgguEIoFENQCEEM6DggAEIAEELEDEIMBEJIDOggIABCKBRCSAzoZCC4QigUQsQMQkQIQlwUQ3AQQ3gQQ4AQYAToFCC4QgAQ6CwguEIAEEMcBEK8BOhMILhCABBCXBRDcBBDeBBDfBBgBOgcIIxDqAhAnOhUIABADEI8BEOoCELQCEIwDEOUCGAI6FQguEAMQjwEQ6gIQtAIQjAMQ5QIYAjoECCMQJzoHCAAQgAQQCkoECEEYAFD9BljjJmC4KGgNcAF4AYAB3wGIAZUQkgEGMC4xMy4xmAEAoAEBsAEUwAEByAEJ2gEGCAEQARgU2gEGCAIQARgL&sclient=gws-wiz-serp">什么是l2</a></p>
+<h2 id="1-3-什么是zkEVM"><a href="#1-3-什么是zkEVM" class="headerlink" title="1.3 什么是zkEVM"></a>1.3 什么是zkEVM</h2><p><a target="_blank" rel="noopener" href="https://blog.thirdweb.com/zkevm/#:~:text=A%20zkEVM%20(which%20stands%20for,scalability%20to%20Ethereum%2Dbased%20applications.">what is zkEVM</a></p>
+<h2 id="1-4-什么是账户抽象"><a href="#1-4-什么是账户抽象" class="headerlink" title="1.4 什么是账户抽象"></a>1.4 什么是账户抽象</h2><p><a target="_blank" rel="noopener" href="https://ethereum.stackexchange.com/questions/146974/how-to-start-with-erc-4337">https://ethereum.stackexchange.com/questions/146974/how-to-start-with-erc-4337</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/eth-infinitism/account-abstraction/tree/6dea6d8752f64914dd95d932f673ba0f9ff8e144">https://github.com/eth-infinitism/account-abstraction/tree/6dea6d8752f64914dd95d932f673ba0f9ff8e144</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.stackup.sh/">https://docs.stackup.sh/</a></p>
+<p><a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/5946">https://learnblockchain.cn/article/5946</a></p>
+<p><a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/5930">https://learnblockchain.cn/article/5930</a></p>
+<p><a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/5426">https://learnblockchain.cn/article/5426</a></p>
+<h1 id="二、环境搭建及合约部署"><a href="#二、环境搭建及合约部署" class="headerlink" title="二、环境搭建及合约部署"></a>二、环境搭建及合约部署</h1><h2 id="2-1-cairo编译环境搭建"><a href="#2-1-cairo编译环境搭建" class="headerlink" title="2.1 cairo编译环境搭建"></a>2.1 cairo编译环境搭建</h2><p>starknet合约使用cairo语言编写，首先得将.cairo文件编译成ABI JSON，之后才能部署合约。以下步骤展示如何安装cairo编译器及完成一个简单cairo源文件的编译。参考自：<a target="_blank" rel="noopener" href="https://docs.starknet.io/documentation/getting_started/environment_setup/">https://docs.starknet.io/documentation/getting_started&#x2F;environment_setup&#x2F;</a></p>
+<ol>
+<li><p>搭建环境：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 创建工作目录</span></span><br><span class="line"><span class="built_in">cd</span></span><br><span class="line"><span class="built_in">mkdir</span> cairo-workspace</span><br><span class="line"><span class="built_in">cd</span> cairo-workspace</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 创建python虚拟运行环境</span></span><br><span class="line">python3.9 -m venv cairo_venv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 激活虚拟运行环境，并在虚拟运行环境下执行下述步骤</span></span><br><span class="line"><span class="built_in">source</span> cairo_venv/bin/activate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 安装依赖库</span></span><br><span class="line"><span class="comment"># 1) gmp</span></span><br><span class="line"><span class="comment"># ubuntu</span></span><br><span class="line">sudo apt install -y libgmp3-dev</span><br><span class="line"><span class="comment"># centos</span></span><br><span class="line">sudo yum install -y gmp-devel</span><br><span class="line"><span class="comment"># 2) pip install ecdsa fastecdsa sympy</span></span><br><span class="line">pip install ecdsa fastecdsa sympy</span><br><span class="line"><span class="comment"># a. 如果报错：error: command &#x27;gcc&#x27; failed: No such file or directory</span></span><br><span class="line"><span class="comment">#    安装gcc：centos：sudo dnf install gcc</span></span><br><span class="line"><span class="comment"># b. 如果报错：Python.h：没有那个文件或目录</span></span><br><span class="line"><span class="comment">#    安装：sudo yum install python3-devel</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 安装cairo cli</span></span><br><span class="line">pip uninstall cairo-lang</span><br><span class="line">pip install cairo-lang</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6. 检测cairo cli是否安装成功</span></span><br><span class="line">starknet --version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 7. 安装cairo代码编译器</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/starkware-libs/cairo/ .cairo</span><br><span class="line"><span class="built_in">cd</span> .cairo/</span><br><span class="line">git checkout tags/v1.0.0-alpha.6</span><br><span class="line"><span class="comment"># 如果没有cargo包管理器，需要安装后再执行该命令</span></span><br><span class="line">cargo build --all --release</span><br><span class="line"><span class="comment"># 将cairo的bin设置到path</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;<span class="variable">$HOME</span>/cairo-workspace/.cairo/target/release:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line"><span class="comment"># 如果需要永久生效，编辑.bash_profile或.zshrc, 添加</span></span><br><span class="line">PATH=<span class="string">&quot;<span class="variable">$HOME</span>/cairo-workspace/.cairo/target/release:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译cairo源文件：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cairo 0 要废了，直接用cairo-compile --version看下有东西出来就OK了</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="2-2-部署账户"><a href="#2-2-部署账户" class="headerlink" title="2.2 部署账户"></a>2.2 部署账户</h2><p>在部署合约之前得先有账户，starknet账户抽象使用的是ERC4337协议，部署账户流程如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 进入cairo工作目录</span></span><br><span class="line"><span class="built_in">cd</span> cairo-workspace</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 创建环境变量目录，可避免每次调用&#x27;starknet&#x27;命令时都需要传递对应参数</span></span><br><span class="line"><span class="built_in">mkdir</span> envs</span><br><span class="line"><span class="built_in">cd</span> envs</span><br><span class="line">vim starknet-cli.env</span><br><span class="line"><span class="comment"># 填入以下内容并保存</span></span><br><span class="line"><span class="comment"># export STARKNET_NETWORK=alpha-goerli</span></span><br><span class="line"><span class="comment"># export CAIRO_COMPILER_DIR=$HOME/cairo-workspace/.cairo/target/release/</span></span><br><span class="line"><span class="comment"># export CAIRO_COMPILER_ARGS=--add-pythonic-hints</span></span><br><span class="line"><span class="comment"># export STARKNET_WALLET=starkware.starknet.wallets.open_zeppelin.OpenZeppelinAccount</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 应用starknet-cli.env内保存的变量.</span></span><br><span class="line"><span class="comment"># 每次登陆shell执行starknet命令时都需要执行</span></span><br><span class="line"><span class="built_in">source</span> starknet-cli.env</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 开始创建账号</span></span><br><span class="line"><span class="comment"># 回到工作目录并进入python虚拟环境</span></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="built_in">source</span> cairo_venv/bin/activate</span><br><span class="line"><span class="comment"># 创建名为 &#x27;jebs_account1&#x27;的账号</span></span><br><span class="line">starknet new_account --account jebs_account1</span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment"># Account address: 0x02f31b7e43d34cc5f97762e4fbcd7a41dc576cde4e332ac3639177c96503f068</span></span><br><span class="line"><span class="comment"># Public key: 0x060ab6af7b8d121a2d05548f494580dfe222e59b03c82bfa76ce7eacb429dab0</span></span><br><span class="line"><span class="comment"># Move the appropriate amount of funds to the account, and then deploy the account by invoking the &#x27;starknet deploy_account&#x27; command.</span></span><br><span class="line"><span class="comment"># <span class="doctag">NOTE:</span> This is a modified version of the OpenZeppelin account contract. The signature is computed differently.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 从有钱的地址往上面地址打钱，大概0.001即可，完事后执行第6步</span></span><br><span class="line"><span class="comment"># 记得先去浏览器看下transaction，accepted后才执行第6步，否则这个账户就废了</span></span><br><span class="line"><span class="comment"># 可以用这个命令估算下fee price</span></span><br><span class="line">starknet deploy_account --simulate --account=jebs_account1 --network=alpha-goerli</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6. 部署账户</span></span><br><span class="line">starknet deploy_account --account=jebs_account1 --network=alpha-goerli</span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"><span class="comment"># Sending the transaction with max_fee: 0.000005 ETH (4755300271053 WEI).</span></span><br><span class="line"><span class="comment"># Sent deploy account contract transaction.</span></span><br><span class="line"><span class="comment"># Contract address: 0x02f31b7e43d34cc5f97762e4fbcd7a41dc576cde4e332ac3639177c96503f068</span></span><br><span class="line"><span class="comment"># Transaction hash: 0x42fe91abb5bca79fcd14603ed4b4853cd35a83f0a50e13dad3a599a79012231</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 7. 拿到第6步transaction hash，如果状态变为accepted就说明ok了</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-部署及调用合约"><a href="#2-3-部署及调用合约" class="headerlink" title="2.3 部署及调用合约"></a>2.3 部署及调用合约</h2><ol>
+<li><p>编写.cairo合约代码：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">%lang starknet</span><br><span class="line"></span><br><span class="line">from starkware.cairo.common.cairo_builtins import HashBuiltin</span><br><span class="line"></span><br><span class="line">// Define a storage variable.</span><br><span class="line">@storage_var</span><br><span class="line">func balance() -&gt; (res: felt) &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Increases the balance by the given amount.</span><br><span class="line">@external</span><br><span class="line">func increase_balance&#123;</span><br><span class="line">    syscall_ptr: felt*,</span><br><span class="line">    pedersen_ptr: HashBuiltin*,</span><br><span class="line">    range_check_ptr,</span><br><span class="line">&#125;(amount: felt) &#123;</span><br><span class="line">    let (res) = balance.read();</span><br><span class="line">    balance.write(res + amount);</span><br><span class="line">    return ();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Returns the current balance.</span><br><span class="line">@view</span><br><span class="line">func get_balance&#123;</span><br><span class="line">    syscall_ptr: felt*,</span><br><span class="line">    pedersen_ptr: HashBuiltin*,</span><br><span class="line">    range_check_ptr,</span><br><span class="line">&#125;() -&gt; (res: felt) &#123;</span><br><span class="line">    let (res) = balance.read();</span><br><span class="line">    return (res=res);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译合约：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">starknet-compile-deprecated first_contract.cairo --output first_contract_compiled.json --abi first_contract_abi.json</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>声明合约：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看环境变量是否设置</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$STARKNET_NETWORK</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 若没有设置，请用命令参数的方式指定</span></span><br><span class="line"></span><br><span class="line">starknet <span class="built_in">declare</span> --contract first_contract_compiled.json --deprecated --account=jebs_account1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"><span class="comment"># Sending the transaction with max_fee: 0.000001 ETH (1378311599773 WEI).</span></span><br><span class="line"><span class="comment"># DeprecatedDeclare transaction was sent.</span></span><br><span class="line"><span class="comment"># Contract class hash: 0xd267e6a11eed91056994aa6a89b20ca2fa989385e88429b57a9fdce84c58e6</span></span><br><span class="line"><span class="comment"># Transaction hash: 0x20b6c9469b6444eac1a8de7b0fce1f62ddb5dfc1f50933015379a6c90fa4249</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部署合约：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">starknet deploy --class_hash 0xd267e6a11eed91056994aa6a89b20ca2fa989385e88429b57a9fdce84c58e6 --account=jebs_account1</span><br><span class="line"><span class="comment"># Sending the transaction with max_fee: 0.000003 ETH (3426529437062 WEI).</span></span><br><span class="line"><span class="comment"># Invoke transaction for contract deployment was sent.</span></span><br><span class="line"><span class="comment"># Contract address: 0x02e06ac28dd788ff7a71a38d283c46d458893fa6eebb23f18c4c515ec44eecd7</span></span><br><span class="line"><span class="comment"># Transaction hash: 0x565c97b2af76e2a0166a876273a8f3713dde2b4c778dd3af3df9988ce27e4f8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数是否需要用str_to_felt来算不太记得了，后面如果不ok可以试试</span></span><br><span class="line"><span class="comment"># 如果需要传构造参数，请加上--inputs 如：starknet deploy --inputs 1 ....</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用合约：</p>
+<ul>
+<li><p>写入</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">starknet invoke --address 0x02e06ac28dd788ff7a71a38d283c46d458893fa6eebb23f18c4c515ec44eecd7 --abi first_contract_abi.json --<span class="keyword">function</span> increase_balance --inputs 1234 --account jebs_account1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"><span class="comment"># Sending the transaction with max_fee: 0.000004 ETH (4089836100665 WEI).</span></span><br><span class="line"><span class="comment"># Invoke transaction was sent.</span></span><br><span class="line"><span class="comment"># Contract address: 0x02e06ac28dd788ff7a71a38d283c46d458893fa6eebb23f18c4c515ec44eecd7</span></span><br><span class="line"><span class="comment"># Transaction hash: 0x5953cc246c693c12587073202f2c801c0809d13417da9510e15077c0de748cd</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>读取：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">starknet call --address 0x02e06ac28dd788ff7a71a38d283c46d458893fa6eebb23f18c4c515ec44eecd7 --abi first_contract_abi.json --<span class="keyword">function</span> get_balance --account jebs_account1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"><span class="comment"># 1234</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h2 id="2-4-合约开发工程化"><a href="#2-4-合约开发工程化" class="headerlink" title="2.4 合约开发工程化"></a>2.4 合约开发工程化</h2><p>单个合约文件可以用<code>starknet-compile</code>命令编译，但是如果合约内引用了其他合约，那么处理起来就很麻烦：把相关引用下载到本地，放到合适的目录，然后引用（具体我也没试过，cairo 0已经被下掉了，文档也找不到了）。工程化后直接将包install一下，然后compile的时候工具会自动处理相应的依赖关系，就没那么麻烦？工具地址：<a target="_blank" rel="noopener" href="https://github.com/OpenZeppelin/nile">https://github.com/OpenZeppelin/nile</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 1. 创建nile的python虚拟化环境</span></span><br><span class="line"><span class="built_in">cd</span> cairo-workspace</span><br><span class="line">python3.9 -m venv cairo_nile_venv</span><br><span class="line"><span class="built_in">source</span> cairo_nile_venv/bin/activate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 安装cairo-nile</span></span><br><span class="line">pip install cairo-nile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 初始化环境</span></span><br><span class="line"><span class="built_in">mkdir</span> nile_contracts</span><br><span class="line"><span class="built_in">cd</span> nile_contracts</span><br><span class="line">nile init</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 编写合约</span></span><br><span class="line"><span class="comment"># 4.1 安装openzeppelin-cairo-contracts库</span></span><br><span class="line">pip install openzeppelin-cairo-contracts</span><br><span class="line"><span class="comment"># 4.2 在contracts目录下创建合约文件</span></span><br><span class="line"><span class="comment"># 4.3 编译写好的合约：nile compile</span></span><br><span class="line"><span class="comment"># 4.4 部署 nile deploy 这命令有点问题，看下面</span></span><br></pre></td></tr></table></figure>
+
+<p>对于最后一步“部署”，nile有<a target="_blank" rel="noopener" href="https://github.com/OpenZeppelin/nile/issues/354">bug</a>，如果合约有构造参数，没法部署上去，解决方案是将artifacts目录下的对应的abi文件复制出来，然后使用“2.3 部署及调用合约“中说明的方式来部署单个合约。</p>
+<h2 id="2-5-dev-net-搭建"><a href="#2-5-dev-net-搭建" class="headerlink" title="2.5 dev net 搭建"></a>2.5 dev net 搭建</h2><p>infrua或者alchema经常抽风，如</p>
+<p><img src="/../../assets/post_img/36aee6185b934b24af718eded6a8cdb4.png" alt="36aee6185b934b24af718eded6a8cdb4"></p>
+<p><img src="/../../assets/post_img/36aee6185b934b24af718eded6a8cdb4_1.png" alt="36aee6185b934b24af718eded6a8cdb4_1"></p>
+<p>可以在本地搭建开发网络，当然最终还是要在测试网测试过才可上线，完事了之后将rpc地址换成<a target="_blank" rel="noopener" href="http://127.0.0.1:5050/rpc%E5%8D%B3%E5%8F%AF%EF%BC%8C%E5%8F%82%E8%80%83%E5%9C%B0%E5%9D%80%EF%BC%9A[https://0xspaceshard.github.io/starknet-devnet/docs/intro](https://0xspaceshard.github.io/starknet-devnet/docs/intro)">http://127.0.0.1:5050/rpc即可，参考地址：[https://0xspaceshard.github.io/starknet-devnet/docs/intro](https://0xspaceshard.github.io/starknet-devnet/docs/intro)</a></p>
+<h1 id="三、web2与starknet网络交互"><a href="#三、web2与starknet网络交互" class="headerlink" title="三、web2与starknet网络交互"></a>三、web2与starknet网络交互</h1><ol>
+<li>java：<a target="_blank" rel="noopener" href="https://github.com/software-mansion/starknet-jvm">starknet-jvm</a>，好像有bug，愣是跑不起来</li>
+<li>nodejs：<a target="_blank" rel="noopener" href="https://github.com/0xs34n/starknet.js">starknet.js</a>，4.22.0 ok</li>
+</ol>
+<h1 id="四、其他"><a href="#四、其他" class="headerlink" title="四、其他"></a>四、其他</h1><ol>
+<li>starknet要迁cairo1，所以这里cairo0写的合约要废掉了，重写，cairo0的合约最晚支持到23年年底：<a target="_blank" rel="noopener" href="https://gitlab.gamefitest.com/gowrap/gowrap-contract/-/blob/master/contracts/WToken.cairo">https://gitlab.gamefitest.com/gowrap/gowrap-contract/-/blob/master/contracts/WToken.cairo</a></li>
+</ol>
+<p>刚接触starknet时的一些问题：</p>
+<ol>
+<li><p>venv是什么：python的虚拟化环境</p>
+</li>
+<li><p>cairo 0与 cairo 1的区别：</p>
+</li>
+<li><p>cairo compiler是什么：编译cairo合约源文件的玩意：“The Cairo compiler allows you to compile Cairo code into Cairo VM executable byte code”</p>
+</li>
+<li><p>testnet1和testnet2的区别：不知道，一直用testnet1</p>
+</li>
+<li><p>工程化后，如何写测试代码：不知道，nile已经不维护了，官方discord上有看到hardhat plugin，但是还没去看是个啥，现在这个时间点也没必要去看</p>
+</li>
+<li><p>new_account并转账后，能看到这个，所以starknet账户也是合约? 是的</p>
+<p> <img src="/../../assets/post_img/36aee6185b934b24af718eded6a8cdb4_2.png" alt="36aee6185b934b24af718eded6a8cdb4_2"></p>
+</li>
+<li><p>啥是wallet provider: 应该是钱包合约的实现？还没找到资料</p>
+<p> <img src="/../../assets/post_img/36aee6185b934b24af718eded6a8cdb4_3.png" alt="36aee6185b934b24af718eded6a8cdb4_3"></p>
+</li>
+<li><p>cairo 0 是如何查找依赖的：<a target="_blank" rel="noopener" href="https://www.cairo-lang.org/docs/how_cairo_works/imports.html#import-search-path">https://www.cairo-lang.org/docs/how_cairo_works&#x2F;imports.html#import-search-path</a></p>
+</li>
+<li><p>这个是合约钱包？是的</p>
+<p> <img src="/../../assets/post_img/36aee6185b934b24af718eded6a8cdb4_4.png" alt="36aee6185b934b24af718eded6a8cdb4_4"></p>
+</li>
+</ol>
+<h1 id="五、参考资料"><a href="#五、参考资料" class="headerlink" title="五、参考资料"></a>五、参考资料</h1><ol>
+<li>starknet official doc: <a target="_blank" rel="noopener" href="https://docs.starknet.io/documentation/">https://docs.starknet.io/documentation/</a></li>
+<li>starknet book: <a target="_blank" rel="noopener" href="https://book.starknet.io/">https://book.starknet.io/</a></li>
+<li>starknet devnet official doc: <a target="_blank" rel="noopener" href="https://0xspaceshard.github.io/starknet-devnet/docs/intro">https://0xspaceshard.github.io/starknet-devnet/docs/intro</a></li>
+<li>cairo 0 doc: <a target="_blank" rel="noopener" href="https://www.cairo-lang.org/docs/hello_cairo/index.html">https://www.cairo-lang.org/docs/hello_cairo&#x2F;index.html</a></li>
+<li>cairo 1 doc: <a target="_blank" rel="noopener" href="https://www.cairo-lang.org/docs/">https://www.cairo-lang.org/docs/</a></li>
+<li>openzeppelin cairo-contracts: <a target="_blank" rel="noopener" href="https://github.com/OpenZeppelin/cairo-contracts">https://github.com/OpenZeppelin/cairo-contracts</a></li>
+<li>nile: <a target="_blank" rel="noopener" href="https://github.com/OpenZeppelin/nile">https://github.com/OpenZeppelin/nile</a></li>
+<li>登链社区:<ul>
+<li><a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/5792">https://learnblockchain.cn/article/5792</a></li>
+<li><a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/4171">https://learnblockchain.cn/article/4171</a></li>
+</ul>
+</li>
+<li>python venv: <a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663602400/1019273143120480">https://www.liaoxuefeng.com/wiki/1016959663602400/1019273143120480</a></li>
+<li>goerli测试网水龙头: <a target="_blank" rel="noopener" href="https://faucet.goerli.starknet.io/">https://faucet.goerli.starknet.io/</a></li>
+<li>区块浏览器: <a target="_blank" rel="noopener" href="http://starkscan.co/">starkscan.co</a></li>
+<li>starknet json rpc api: <a target="_blank" rel="noopener" href="https://docs.alchemy.com/reference/starknet-getclasshashat">https://docs.alchemy.com/reference/starknet-getclasshashat</a></li>
+</ol>
+<h1 id="六、数据备忘"><a href="#六、数据备忘" class="headerlink" title="六、数据备忘"></a>六、数据备忘</h1><h2 id="6-1-已部署的合约"><a href="#6-1-已部署的合约" class="headerlink" title="6.1 已部署的合约"></a>6.1 已部署的合约</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://testnet.starkscan.co/contract/0x06f437b6624d8bb9455eedfb26fa99b8267846a05ed2d7f6a03710106f94fcac%EF%BC%9A%E5%91%BD%E4%BB%A4%E4%BC%A0%E5%8F%82%E6%9C%89%E9%97%AE%E9%A2%98%EF%BC%8C%E5%90%88%E7%BA%A6%E5%BA%9F%E4%BA%86">https://testnet.starkscan.co/contract/0x06f437b6624d8bb9455eedfb26fa99b8267846a05ed2d7f6a03710106f94fcac：命令传参有问题，合约废了</a></li>
+<li><a target="_blank" rel="noopener" href="https://testnet.starkscan.co/contract/0x007289af78ff58bb8a0785211c5408309da958677cb6cf0629bd0b513c4c6391">https://testnet.starkscan.co/contract/0x007289af78ff58bb8a0785211c5408309da958677cb6cf0629bd0b513c4c6391</a>: 权限部分有问题，admin的role没有设置对</li>
+<li>可用的：<a target="_blank" rel="noopener" href="https://testnet.starkscan.co/contract/0x06f437b6624d8bb9455eedfb26fa99b8267846a05ed2d7f6a03710106f94fcac">https://testnet.starkscan.co/contract/0x06f437b6624d8bb9455eedfb26fa99b8267846a05ed2d7f6a03710106f94fcac</a><ul>
+<li>管理员地址：0x38548d8cbba61b943d1e7982aef9593eaf0a6483fd3a96b8fc69d00a0ce936b</li>
+</ul>
+</li>
+</ol>
+<h2 id="6-2-部署成功时使用的命令"><a href="#6-2-部署成功时使用的命令" class="headerlink" title="6.2 部署成功时使用的命令"></a>6.2 部署成功时使用的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">starknet deploy --class_hash 0x144a632be9eacbb9ad8a70346b1d4560df37ee52ed55c7d077ad25f95abd315 --account jebs_account1 --inputs 131341969220974 30580</span><br><span class="line"></span><br><span class="line">starknet invoke --address 0x06f437b6624d8bb9455eedfb26fa99b8267846a05ed2d7f6a03710106f94fcac --abi abis/WToken.json --<span class="keyword">function</span> grant_role --inputs 0x4f96f87f6963bb246f2c30526628466840c642dc5c50d5a67777c6cc0e44ab5 0x0468b7AdAE55BE128D1e10D13075A0FFF7e1941014F1C0aC780a35D51658965E --account jebs_account1</span><br><span class="line"></span><br><span class="line">starknet invoke --address 0x06f437b6624d8bb9455eedfb26fa99b8267846a05ed2d7f6a03710106f94fcac --abi abis/WToken.json --<span class="keyword">function</span> grant_role --inputs 0x7823a2d975ffa03bed39c38809ec681dc0ae931ebe0048c321d4a8440aed509 0x0468b7AdAE55BE128D1e10D13075A0FFF7e1941014F1C0aC780a35D51658965E --account jebs_account1</span><br><span class="line"></span><br><span class="line">starknet deploy --class_hash 0x7d460d50a0baf11d0cf7cc9be9bd2d90e36ce95da903a6f78a210d693e7d907 --account jeb_account --inputs 131341969220974 9464186298266979713447689875308</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../../assets/post_img/36aee6185b934b24af718eded6a8cdb4_5.png" alt="36aee6185b934b24af718eded6a8cdb4_5"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://alpha2j.cn">Jeb</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://alpha2j.cn/2023/06/18/undefined/">https://alpha2j.cn/2023/06/18/undefined/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://alpha2j.cn" target="_blank">杰布是谁</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/starknet/">starknet</a></div><div class="post_share"><div class="social-share" data-image="/assets/blog_avatar.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/07/07/undefined/" title="maven核心概念的一次探索"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">maven核心概念的一次探索</div></div></a></div><div class="next-post pull-right"><a href="/2023/06/06/Ya-Ya-returns-to-the-Beijing-Zoo/" title="Ya Ya returns to the Beijing Zoo"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Ya Ya returns to the Beijing Zoo</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/assets/blog_avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jeb</div><div class="author-info__description">即使天还没亮，固执做梦的人，身前会有光！</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Alpha2J"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Alpha2J" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jeb.wannng@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Starknet%E5%90%88%E7%BA%A6%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8"><span class="toc-number">1.</span> <span class="toc-text">Starknet合约开发入门</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">2.</span> <span class="toc-text">一、基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AFstarknet"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 什么是starknet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E4%BB%80%E4%B9%88%E6%98%AFL2"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 什么是L2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E4%BB%80%E4%B9%88%E6%98%AFzkEVM"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 什么是zkEVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E4%BB%80%E4%B9%88%E6%98%AF%E8%B4%A6%E6%88%B7%E6%8A%BD%E8%B1%A1"><span class="toc-number">2.4.</span> <span class="toc-text">1.4 什么是账户抽象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E5%90%88%E7%BA%A6%E9%83%A8%E7%BD%B2"><span class="toc-number">3.</span> <span class="toc-text">二、环境搭建及合约部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-cairo%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 cairo编译环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E9%83%A8%E7%BD%B2%E8%B4%A6%E6%88%B7"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 部署账户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E9%83%A8%E7%BD%B2%E5%8F%8A%E8%B0%83%E7%94%A8%E5%90%88%E7%BA%A6"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 部署及调用合约</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E5%90%88%E7%BA%A6%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B%E5%8C%96"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 合约开发工程化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-dev-net-%E6%90%AD%E5%BB%BA"><span class="toc-number">3.5.</span> <span class="toc-text">2.5 dev net 搭建</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81web2%E4%B8%8Estarknet%E7%BD%91%E7%BB%9C%E4%BA%A4%E4%BA%92"><span class="toc-number">4.</span> <span class="toc-text">三、web2与starknet网络交互</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%85%B6%E4%BB%96"><span class="toc-number">5.</span> <span class="toc-text">四、其他</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">6.</span> <span class="toc-text">五、参考资料</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%95%B0%E6%8D%AE%E5%A4%87%E5%BF%98"><span class="toc-number">7.</span> <span class="toc-text">六、数据备忘</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E5%B7%B2%E9%83%A8%E7%BD%B2%E7%9A%84%E5%90%88%E7%BA%A6"><span class="toc-number">7.1.</span> <span class="toc-text">6.1 已部署的合约</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E9%83%A8%E7%BD%B2%E6%88%90%E5%8A%9F%E6%97%B6%E4%BD%BF%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-number">7.2.</span> <span class="toc-text">6.2 部署成功时使用的命令</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/17/undefined/" title="使用bitcoinjs-lib进行比特币的转账">使用bitcoinjs-lib进行比特币的转账</a><time datetime="2023-12-17T16:00:00.000Z" title="发表于 2023-12-18 00:00:00">2023-12-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/06/the-syllabus/" title="Tuesday with Morrie Chapter2 The Syllabus">Tuesday with Morrie Chapter2 The Syllabus</a><time datetime="2023-08-06T16:00:00.000Z" title="发表于 2023-08-07 00:00:00">2023-08-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/04/the-curriculum/" title="Tuesday with Morrie Chapter1 The Curriculum">Tuesday with Morrie Chapter1 The Curriculum</a><time datetime="2023-08-04T16:00:00.000Z" title="发表于 2023-08-05 00:00:00">2023-08-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/25/undefined/" title="如何创建自己的maven archetype">如何创建自己的maven archetype</a><time datetime="2023-07-25T16:00:00.000Z" title="发表于 2023-07-26 00:00:00">2023-07-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/07/undefined/" title="maven核心概念的一次探索">maven核心概念的一次探索</a><time datetime="2023-07-07T16:00:00.000Z" title="发表于 2023-07-08 00:00:00">2023-07-08</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Jeb</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="60198" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true"> </div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
